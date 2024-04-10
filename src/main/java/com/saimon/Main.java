@@ -45,14 +45,14 @@ public class Main {
             try {
                 Map<String, AttributeValue> items = dynamoDbClient.getItem(itemRequest).item();
 
-                if (items.size() == 0) {
+                if (items.isEmpty()) {
 
                     System.out.printf("This email is not registered.. \nAre you sure this is the correct email %s \n", userEmailInput);
                     System.out.println("Y/N: ");
                     var inputYN = scan.next();
 
-                    if (inputYN.toUpperCase().equals("Y")) {
-                        HashMap<String, AttributeValue> putItem = new HashMap<String, AttributeValue>();
+                    if (inputYN.equalsIgnoreCase("Y")) {
+                        HashMap<String, AttributeValue> putItem = new HashMap<>();
                         putItem.put("user_email", AttributeValue.builder().s(userEmailInput).build());
                         putItem.put("user_uuid", AttributeValue.builder().s(UUID.randomUUID().toString()).build());
 
@@ -108,7 +108,7 @@ public class Main {
                 System.out.println("Input JUST ONE the number: ");
 
                 try {
-                    action = Integer.valueOf(scan.next());
+                    action = Integer.parseInt(scan.next());
                 } catch (Exception e) {
                     action = 0;
                 }

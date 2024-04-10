@@ -5,7 +5,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 public class AwsConfiguration {
 
-    private DynamoDbClient dynamoDbClient;
+    private final DynamoDbClient dynamoDbClient;
 
     public AwsConfiguration() {
         dynamoDbClient = generateDynamoDbClientConfigurations();
